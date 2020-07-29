@@ -15,7 +15,7 @@
  */
 package io.realm.benchmark
 
-import androidx.benchmark.measureRepeated
+import androidx.benchmark.junit4.measureRepeated
 import androidx.test.platform.app.InstrumentationRegistry
 import io.realm.Realm
 import io.realm.RealmConfiguration

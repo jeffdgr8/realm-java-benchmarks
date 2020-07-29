@@ -14,7 +14,16 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner 'androidx.benchmark.AndroidBenchmarkRunner'
+        testInstrumentationRunner 'androidx.benchmark.junit4.AndroidBenchmarkRunner'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 
     buildTypes {
@@ -37,12 +46,12 @@ dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.0'
-    androidTestImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.benchmark:benchmark:1.0.0-alpha01'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'junit:junit:4.13'
+    androidTestImplementation 'androidx.benchmark:benchmark-junit4:1.0.0'
 
-    def room_version = "2.1.0-beta01"
+    def room_version = "2.2.5"
     implementation "androidx.room:room-runtime:$room_version"
     kapt "androidx.room:room-compiler:$room_version"
 

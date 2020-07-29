@@ -15,7 +15,7 @@
  */
 package io.realm.benchmark
 
-import androidx.benchmark.BenchmarkRule
+import androidx.benchmark.junit4.BenchmarkRule
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule

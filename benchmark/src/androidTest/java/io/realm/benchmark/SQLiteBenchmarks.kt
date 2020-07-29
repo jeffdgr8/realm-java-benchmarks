@@ -19,7 +19,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.database.sqlite.SQLiteStatement
-import androidx.benchmark.measureRepeated
+import androidx.benchmark.junit4.measureRepeated
 import androidx.test.platform.app.InstrumentationRegistry
 
 class SQLiteBenchmarks(size: Long): Benchmarks(size) {
@@ -80,7 +80,6 @@ class SQLiteBenchmarks(size: Long): Benchmarks(size) {
         db.setTransactionSuccessful()
         db.endTransaction()
     }
-
 
     override fun simpleQuery() {
         val query = String.format("SELECT * FROM %s WHERE hired = 0 AND age BETWEEN 20 AND 50 AND name = 'Foo0'", dbHelper.TABLE_SIMPLE)

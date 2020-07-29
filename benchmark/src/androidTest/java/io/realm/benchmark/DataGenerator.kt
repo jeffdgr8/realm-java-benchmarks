@@ -35,7 +35,7 @@ class DataGenerator {
         return employeeNames[(row % NUM_TEST_NAMES).toInt()]
     }
 
-    fun getEmployeeAge(row: Long): Long{
+    fun getEmployeeAge(row: Long): Long {
         return row % MAX_AGE + MIN_AGE
     }
 
