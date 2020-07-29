@@ -112,14 +112,17 @@ class RealmBenchmarks(size: Long): Benchmarks(size) {
     }
 
     override fun fullScan() {
-        addObjects(size)
         benchmarkRule.measureRepeated {
+            runWithTimingDisabled { addObjects(size) }
+
             val result= realm.where<Employee>()
                     .equalTo("hired", true)
                     .between("age", -2, -1)
                     .equalTo("name", "Smile1").findAll()
             @Suppress("UNUSED_VARIABLE")
             val count = result.size
+
+            runWithTimingDisabled { deleteObjects() }
         }
     }
 
@@ -146,7 +149,7 @@ class RealmBenchmarks(size: Long): Benchmarks(size) {
         benchmarkRule.measureRepeated {
             runWithTimingDisabled { addObjects(size) }
             @Suppress("UNUSED_VARIABLE")
-            val count= realm.where<Employee>().count()
+            val count = realm.where<Employee>().count()
             runWithTimingDisabled { deleteObjects() }
         }
     }

@@ -130,13 +130,16 @@ class SQLiteBenchmarks(size: Long): Benchmarks(size) {
     }
 
     override fun fullScan() {
-        addRows()
         benchmarkRule.measureRepeated {
+            runWithTimingDisabled { addRows() }
+
             val cursor = db.rawQuery("SELECT * FROM " + dbHelper.TABLE_SIMPLE
                     + " WHERE hired = 1 AND age BETWEEN -2 AND -1 AND name = 'Smile1'", null)
             @Suppress("UNUSED_VARIABLE")
             val count = cursor.count
             cursor.close()
+
+            runWithTimingDisabled { deleteRows() }
         }
     }
 
@@ -151,24 +154,26 @@ class SQLiteBenchmarks(size: Long): Benchmarks(size) {
     }
 
     override fun sum() {
-        addRows()
         benchmarkRule.measureRepeated {
+            runWithTimingDisabled { addRows() }
             val cursor = db.rawQuery(String.format("SELECT SUM(age) AS sum FROM %s", dbHelper.TABLE_SIMPLE), null)
             cursor.moveToFirst()
             @Suppress("UNUSED_VARIABLE")
             val sum = cursor.getInt(0)
             cursor.close()
+            runWithTimingDisabled { deleteRows() }
         }
     }
 
     override fun count() {
-        addRows()
         benchmarkRule.measureRepeated {
+            runWithTimingDisabled { addRows() }
             val cursor = db.rawQuery(String.format("SELECT COUNT(*) AS count FROM %s", dbHelper.TABLE_SIMPLE), null)
             cursor.moveToFirst()
             @Suppress("UNUSED_VARIABLE")
             val count = cursor.getInt(0)
             cursor.close()
+            runWithTimingDisabled { deleteRows() }
         }
     }
 
