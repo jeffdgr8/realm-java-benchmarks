@@ -48,7 +48,7 @@ def read_values(datasize, datastore, test):
 
 def datastore_benchmarked(datasize, datastore):
     """was a datastore benchmarked?"""
-    return os.path.exists(str(datasize) + '/' + datastore + '_Sum.csv')
+    return os.path.exists(str(datasize) + '/' + datastore + '_sum.csv')
 
 def benchmark(datasize):
     """Plot the output of each benchmark to its own file"""
