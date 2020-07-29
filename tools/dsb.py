@@ -27,7 +27,7 @@ import matplotlib.pyplot as plt
 XKCD_STYLE = False
 
 # List of names of possible tested data stores (see DataStoreTest#getTag())
-DATASTORES = ['sqlite', 'realm', 'room']
+DATASTORES = ['sqlite', 'realm', 'room', 'couchbase']
 # Number of objects tested. It is assumed that all sub folders contain test data and are named after
 # the number of objects tested, e.g "./1000" or "./10000".
 DATASIZES = ['10', '100', '1000']
