@@ -10,6 +10,7 @@
       manifest, as it is not possible to override this flag from Gradle.
     -->
     <application
+        android:largeHeap="true"
         android:debuggable="false"
         tools:ignore="HardcodedDebugMode"
         tools:replace="android:debuggable" />
