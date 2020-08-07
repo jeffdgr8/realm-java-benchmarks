@@ -93,7 +93,7 @@ class CouchbaseMemoryTest(val size: Long) {
     }
 
     companion object {
-        private const val TAG = "CouchbaseBenchmarks"
+        private const val TAG = "Couchbase"
 
         private const val LOOPS = 100
 
