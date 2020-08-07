@@ -44,17 +44,23 @@ class CouchbaseMemoryTest(val size: Long) {
         Log.i(TAG, "Testing $size documents looping $LOOPS times")
         activityManager.getMemoryInfo(memoryInfo)
         Log.i(TAG, "Total memory = ${formatter.format(memoryInfo.totalMem / 1024)} KB")
-        val runtime = Runtime.getRuntime()
-        Log.i(TAG, "Max memory = ${formatter.format(runtime.maxMemory() / 1024)} KB")
-        freeMemory = runtime.freeMemory() / 1024
+        Log.i(TAG, "Max memory = ${formatter.format(Runtime.getRuntime().maxMemory() / 1024)} KB")
+        updateFreeMemory()
         Log.i(TAG, "Free memory = ${formatter.format(freeMemory)} KB")
     }
 
     private fun logFreeMemory() {
         val oldFreeMemory = freeMemory
-        freeMemory = Runtime.getRuntime().freeMemory() / 1024
+        updateFreeMemory()
         val diff = freeMemory - oldFreeMemory
         Log.i(TAG, "Free memory = ${formatter.format(freeMemory)} KB ${if (diff > 0) "+" else ""}${formatter.format(diff)} KB")
+    }
+
+    private fun updateFreeMemory() {
+        Runtime.getRuntime().run {
+            gc()
+            freeMemory = freeMemory() / 1024
+        }
     }
 
     private fun addObjects(size: Long) {
